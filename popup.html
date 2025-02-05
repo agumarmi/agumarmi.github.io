@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Progreso</title>
+    <link rel="stylesheet" href="popup-styles.css">
+</head>
+<body>
+    <div class="popup-container">
+        <h2>Modificar Progreso</h2>
+        <form id="update-form">
+            <label for="title">Título del Libro:</label>
+            <input type="text" id="title" name="title"><br><br>
+            <label for="current-page">Página Actual:</label>
+            <input type="number" id="current-page" name="current-page"><br><br>
+            <label for="total-pages">Páginas Totales:</label>
+            <input type="number" id="total-pages" name="total-pages"><br><br>
+            <button type="button" onclick="updateTracker()">Actualizar</button>
+        </form>
+    </div>
+    <script>
+        function updateTracker() {
+            const title = document.getElementById('title').value;
+            const currentPage = document.getElementById('current-page').value;
+            const totalPages = document.getElementById('total-pages').value;
+
+            // Send data to the main window
+            window.opener.postMessage({ title, currentPage, totalPages }, '*');
+        }
+    </script>
+</body>
+</html>
